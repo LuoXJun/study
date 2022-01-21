@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Symbol.iterator可迭代对象</title>
+</head>
+<body>
+    
+</body>
+
+    <script>
+
+        {
+            let range = {
+
+            from:0,
+            to:6,
+            [Symbol.iterator](){
+
+                return {
+
+                    current:this.from,
+                    last:this.to,
+                    arr: ['我','见','青','山','多','妩','媚',],
+                    next(){
+
+                        if(this.current <= this.last) {
+
+                            let index = this.current
+                            this.current++
+                            return {done:false, value:this.arr[index]}
+
+                        } else {
+
+                            return {done:true}
+
+                        }
+
+                    }
+
+                }
+                
+            }
+
+        }
+
+        // 将伪数组或者可迭代对象转化为数组
+        let arr = Array.from(range)
+        console.log(arr)
+
+        for(const item of range) {
+
+            console.log(item)
+
+        }
+    }
+
+    {
+        // 使用generator进行迭代
+        let range = {
+
+            from:0,
+            to:7,
+            arr: ['料','青','山','见','我','应','如','是'],
+            *[Symbol.iterator](){
+
+                for( let value = this.from; value <= this.to; value++ ){
+
+                    yield this.arr[value]
+
+                }
+
+            }
+
+        }
+
+        let arr = Array.from(range)
+        console.log(arr)
+
+        for(const item of range) {
+
+            console.log(item)
+
+        }
+        
+
+    }
+
+    </script>
+
+</html>

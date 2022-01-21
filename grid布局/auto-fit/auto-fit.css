@@ -1,0 +1,192 @@
+*{
+    /* 防止页面变形 */
+    box-sizing: border-box;
+    /* 添加尺寸变化时的动画效果 */
+    transition: all 0.3s linear;
+}
+body,html,p,h1,h2,h3,h4,h5,h6{
+    margin: 0;
+    padding: 0;
+}
+body,html{
+    height: 100%;
+    width: 100%;
+}
+
+/* grid布局 */
+
+/* 最外层包围盒 */
+.auto-fit-container{
+    box-sizing: border-box;
+    display: grid;
+    height: 100%;
+    grid-template-columns: repeat(12,1fr);
+}
+
+/* 作为子级细分数的父级 */
+.grid-box{
+    display: grid;
+    width: 100%;
+    height: 100%;
+    grid-template-columns: repeat(12,1fr);
+}
+.grid-box4{
+    display: grid;
+    width: 100%;
+    height: 100%;
+    grid-template-columns: repeat(4,1fr);
+}
+.grid-box3{
+    display: grid;
+    width: 100%;
+    height: 100%;
+    grid-template-columns: repeat(3,1fr);
+}
+.grid-box2{
+    display: grid;
+    width: 100%;
+    height: 100%;
+    grid-template-columns: repeat(2,1fr);
+}
+
+/* 行间隔 */
+.row-gap-5{
+    row-gap: 5px;
+}
+.row-gap-10{
+    row-gap: 10px;
+}
+.row-gap-15{
+    row-gap: 15px;
+}
+.row-gap-20{
+    row-gap: 20px;
+}
+
+/* 列间隔 */
+.col-gap-5{
+    column-gap: 5px;
+}
+.col-gap-10{
+    column-gap: 10px;
+}
+.col-gap-15{
+    column-gap: 15px;
+}
+.col-gap-20{
+    column-gap: 20px;
+}
+
+/* 行、列间隔 */
+.rcol-gap-5{
+    gap: 5px;
+}
+.rcol-gap-10{
+    gap: 10px;
+}
+.rcol-gap-15{
+    gap: 15px;
+}
+.rcol-gap-20{
+    gap: 20px;
+}
+
+/* 作为子级细分数 */
+/* 列细分--从当前列往后合并指定列数 */
+.col-2{
+    grid-column-end: span 2;
+}
+.col-3{
+    grid-column-end: span 3;
+}
+.col-4{
+    grid-column-end: span 4;
+}
+.col-5{
+    grid-column-end: span 5;
+}
+.col-6{
+    grid-column-end: span 6;
+}
+.col-7{
+    grid-column-end: span 7;
+}
+.col-8{
+    grid-column-end: span 8;
+}
+.col-9{
+    grid-column-end: span 9;
+}
+.col-10{
+    grid-column-end: span 10;
+}
+.col-11{
+    grid-column-end: span 11;
+}
+.col-12{
+    grid-column-end: span 12;
+}
+
+/* 位置样式 */
+.grid-center{
+    justify-items: center;
+    align-items: center;
+}
+.grid-justCenter{
+    justify-items: center;
+}
+.grid-alignCenter{
+    align-items: center;
+}
+.grid-item-Start{
+    justify-self: start;
+}
+.grid-item-End{
+    justify-self: end;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* flex布局 */
+.flex-box{
+    display: flex;
+}
+
+/* 位置属性 */
+.flex-justCenter{
+    justify-content: center;
+}
+.flex-alignCenter{
+    align-items: center;
+}
+.flex-center{
+    justify-content: center;
+    align-items: center;
+}
+.flex-justEnd{
+    justify-content: flex-end;
+}
+.flex-justStart{
+    justify-content: flex-start;
+}
+.flex-around{
+    justify-content: space-around;
+}
+.flex-between{
+    justify-content: space-between;
+}
+
+
+
+/* 通用属性 */

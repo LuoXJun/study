@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>demo</title>
+
+    <style>
+
+        p {
+            padding: 0;
+            margin: 0;
+            line-height: 30px;
+            color: #fff;
+            user-select: none;
+        }
+        .expand{
+            background-color: rgb(26, 26, 92)!important;
+        }
+
+        .card{
+            overflow: hidden;
+            transition: all 0.3s ease-in-out;
+            width: 400px;
+        }
+
+        .title {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: green;
+            padding: 0 20px;
+            cursor: pointer;
+            height:40px;
+        }
+        .child {
+            background-color: #f5ad47;
+            padding: 0 50px;
+        }
+
+    </style>
+
+</head>
+<body>
+    
+    <div class="card">
+        <!-- 标题 -->
+        <div class="title expand">
+            <p> 标题一</p>
+            <p>⬇</p>
+        </div>
+        <!-- 列表元素 -->
+        <div class="child">
+            <p>11</p>
+            <p>11</p>
+        </div>
+    </div>
+    <div class="card">
+        <!-- 标题 -->
+        <div class="title">
+            <p> 标题二</p>
+            <p>⬇</p>
+
+        </div>
+        <!-- 列表元素 -->
+        <div class="child">
+            <p>22</p>
+            <p>22</p>
+            <p>22</p>
+            <p>22</p>
+        </div>
+    </div>
+    <div class="card">
+        <!-- 标题 -->
+        <div class="title">
+            <p> 标题三</p>
+            <p>⬇</p>
+
+        </div>
+        <!-- 列表元素 -->
+        <div class="child">
+            <p>33</p>
+            <p>33</p>
+        </div>
+    </div>
+    <div class="card">
+        <!-- 标题 -->
+        <div class="title">
+            <p> 标题四</p>
+            <p>⬇</p>
+
+        </div>
+        <!-- 列表元素 -->
+        <div class="child">
+            <p>44</p>
+            <p>44</p>
+            <p>44</p>
+            <p>44</p>
+        </div>
+    </div>
+    <div class="card">
+        <!-- 标题 -->
+        <div class="title">
+            <p> 标题五</p>
+            <p>⬇</p>
+
+        </div>
+        <!-- 列表元素 -->
+        <div class="child">
+            <p>55</p>
+            <p>55</p>
+            <p>55</p>
+            <p>55</p>
+        </div>
+    </div>
+
+
+    <script>
+
+        // 获取父级（最外层元素）
+        let card = document.querySelectorAll('.card')
+        // 获取标题
+        let title = document.querySelectorAll('.title')
+
+
+        // 初始化高度，不先初始化高度不会有动画效果
+        function initHeight(item, index){
+
+            let height = 0
+
+            if ( !item.classList.contains('expand') ) {
+
+                card[index].style.height = item.offsetHeight + 'px'
+
+            } else {
+
+                card[index].childNodes.forEach((element, num) => {
+
+                    if (element.nodeName === "DIV") {
+
+                        height += element.offsetHeight
+
+                    }
+
+                })
+
+                card[index].style.height = height + 'px'
+
+            }
+
+        }
+
+        // 点击改变高度
+        function changeHeight(item, index){
+
+            let height = 0
+
+            if ( item.classList.contains('expand') ) {
+
+                /**
+                 * 展开状态下点击，将card得高度设置为和title一样，
+                 * 也即是只显示标题,超出部分被父级css得溢出隐藏隐藏掉
+                */
+                card[index].style.height = item.offsetHeight + 'px'
+
+                item.classList.remove('expand')
+
+            } else {
+
+                // 点击展开同时判断是否有其他展开得列表，如果有则关闭并且赋予关闭状态下高度
+                card.forEach((element, num) => {
+
+                    // 如果是展开状态,移除掉展开标识符并且将高度变为非展开状态的高度
+                    if(element.children[0].classList.contains('expand')){
+
+                        element.children[0].classList.remove('expand')
+                        element.style.height = element.children[0].offsetHeight + 'px'
+
+                    }
+
+                })
+
+                // 获取当前对象得高度
+                card[index].childNodes.forEach((item, index) => {
+
+                    // 筛选含有高度的对象做累加
+                    if (item.offsetHeight) {
+
+                        height += item.offsetHeight
+
+                    }
+
+                })
+
+                // 赋予展开时的高度
+                card[index].style.height = height + 'px'
+
+                // 加上展开标识类名
+                item.classList.add('expand')
+
+            }
+
+        }
+
+        title.forEach( (item, index) => {
+
+            // 初始化高度
+            initHeight(item, index)
+
+            // 点击改变高度
+            item.onclick = function() {
+
+                changeHeight(item, index)
+
+            }
+
+        })
+
+
+    </script>
+</body>
+</html>

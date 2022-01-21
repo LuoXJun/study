@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>canvas</title>
+    <style>
+        html,body{
+            margin: 0;
+            padding: 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="start" style="padding: 5px 10px; margin-bottom: 10px;background-color: bisque;width:40px;border-radius: 4px;">开始</div>
+    <div class="end" style="padding: 5px 10px; margin-bottom: 10px;background-color: orange;width:40px;border-radius: 4px;">结束</div>
+    <canvas class="canvas" width='1400' height="800" style="background-color: rgb(3, 3, 3);"></canvas>
+    <!-- <img class="img" src="../threejs/images/risk.jpg" alt="" width="20" height="20" style="display: none;"> -->
+</body>
+<script>
+    let canvas = document.querySelector('.canvas')
+    let ctx = canvas.getContext("2d")
+    console.log(ctx)
+
+    // // 填充颜色
+    // ctx.fillStyle = 'cyan'
+    // // 画图模式---矩形
+    // ctx.fillRect(0,0,200,100)
+
+    // // 线性渐变开始坐标和结束坐标--一般可用于控制渐变方向
+    // let gradient = ctx.createLinearGradient(0,0,200,0)
+    // // 径向渐变---开始圆坐标。开始圆半径，结束圆坐标，结束圆半径
+    // // var grd=ctx.createRadialGradient(75,50,5,90,60,100);
+    // // 创建渐变颜色---0为开始，1为结束，中间表示过程
+    // gradient.addColorStop('0','red')
+    // gradient.addColorStop('0.5','blue')
+    // gradient.addColorStop('1','#2ecc71')
+    // // 线条颜色
+    // ctx.strokeStyle = gradient
+    // // ctx.strokeStyle = 'cyan'
+    // ctx.lineWidth = 5
+    // ctx.strokeRect(10,10,200,100)
+
+    // let gradient = ctx.createLinearGradient(0,0,200,0)
+    // gradient.addColorStop('0','red')
+    // gradient.addColorStop('0.5','blue')
+    // gradient.addColorStop('1','#2ecc71')
+    // // 字体和字体大小
+    // ctx.font='30px Verdana'
+    // // 阴影模糊度
+    // ctx.shadowBlur = 10
+    // ctx.shadowColor = 'black'
+    // // 阴影偏移
+    // ctx.shadowOffsetX = 20
+    // ctx.shadowOffsetY = 20
+    // ctx.strokeStyle = gradient
+    // ctx.strokeText('Canvas',10,50)
+
+    // //使用图片平铺repeat-x
+    // let image = document.querySelector('.img')
+    // let pat = ctx.createPattern(image,'repeat')
+    // ctx.rect(0,0,400,400)
+    // ctx.fillStyle = pat
+    // ctx.fill()
+
+    // 画线条
+    // 新建路径
+    // ctx.beginPath();
+    // ctx.moveTo(10,10)
+    // ctx.lineTo(300,50)
+    // ctx.lineTo(10,150)
+    // ctx.lineWidth = 20
+    // // 线条顶端露出部分形状round(圆弧) || butt(平直，默认) || square(正方形)
+    // ctx.lineCap = "round"
+    // // 先天相交部分形状 bevel(创建斜角) || round(创建圆角) || miter(默认，创建尖角)
+    // ctx.lineJoin = 'miter'
+    // // 相交处外角和内角的距离--且只有lineJoin为Miter时才生效，假若超出长度，则将lineJoin变为bevel
+    // ctx.miterLimit = 1
+    // ctx.stroke()
+
+    // 画图---使用页面中的图片
+    // let img = document.querySelector('.img')
+    // img.onload = function(){
+    //     ctx.drawImage(img,10,10,150,150)
+    // }
+    // 直接设置路径
+    // let img = new Image()
+    // img.onload = function(){
+    //     ctx.drawImage(img,300,10,200,160)
+    // }
+    // img.src = "../threejs/images/01.jpg"
+
+    // // 画圆
+    // ctx.arc(150,150,100,0,Math.PI*2)
+    // ctx.strokeStyle = 'cyan'
+    // // 实线长度，间隔距离
+    // ctx.setLineDash([20,5])
+    // // 设置初始偏移量
+    // ctx.lineDashOffset = -10
+    // ctx.stroke()
+
+    // 画色块demo
+    // 构建纵轴日期数组数据
+    // let dateArr = ['Saturday','Friday','Thursday','Wednesday','Tuesday','Monday','Sunday']
+    // // 横轴高度数据
+    // let heightArr = ['12a','1a','2a','3a','4a','5a','6a','7a','8a','9a','10a','11a','12p','1p','2p','3p','4p','5p','6p','7p','8p','9p','10p','11p']
+    // // 先画横纵坐标系
+    // ctx.moveTo(160,30)
+    // ctx.lineTo(160,730)
+    // ctx.lineTo(1360,730)
+    // ctx.lineJoin = 'square'
+    // ctx.stroke()
+
+    // // 纵轴
+    // for(let i=7;i>=0;i--){
+    //     ctx.beginPath()
+    //     ctx.moveTo(160,100 * i +30)
+    //     ctx.lineTo(140,100 * i +30)
+    //     ctx.lineJoin = 'square'
+    //     ctx.stroke()
+    // }
+    // for(let i=7;i>0;i--){
+    //     // 画字体
+    //     ctx.beginPath()
+    //     ctx.font='16px Verdana'
+    //     ctx.strokeText(dateArr[i-1],70,100 * i -10)
+    // }
+
+    // // 横轴
+    // for(let i=heightArr.length;i>=0;i--){
+    //     ctx.beginPath()
+    //     ctx.moveTo(50*i +160,730)
+    //     ctx.lineTo(50*i +160,750)
+    //     ctx.lineJoin = 'square'
+    //     ctx.stroke()
+    // }
+    // for(let i=heightArr.length;i>0;i--){
+    //     // 画字体
+    //     ctx.beginPath()
+    //     ctx.font='16px Verdana'
+    //     ctx.strokeText(heightArr[i-1],50*i +125,760)
+    // }
+
+    // // 构建色块
+
+    // for(let i=0;i<dateArr.length;i++){
+    //     for(let j=0;j<heightArr.length;j++){
+    //         ctx.beginPath()
+    //         ctx.fillStyle = 'rgb('+Math.floor(255-25*i)+','+Math.floor(255-10*j)+',0)'
+    //         ctx.fillRect(50*j +160,100 * i +30,50,100)
+    //         ctx.strokeText(Math.floor(255-20*i),50*j +170,100 * i +85)
+    //     }
+    // }
+
+    // 画色斑demo
+    // 获取json对象
+    var request = new XMLHttpRequest();
+    request.open("GET", "./demo.json");
+    request.send(null);
+    request.onload = function () {
+        if (request.status == 200 && request.readyState == 4) {
+            let json = JSON.parse(request.response)
+            for(let i=0;i<json.structList.length;i++){
+                let item = json.structList[i]
+                ctx.arc(item.fV,item.fHeight,1,0,Math.PI*2)
+                ctx.fillStyle = 'red'
+                ctx.fill()
+            }
+
+        }
+    }
+
+    // 点击开始按钮开始画点，点击结束画点
+    let start = document.querySelector('.start')
+    let end = document.querySelector('.end')
+    ctx.strokeStyle = 'red'
+    start.onclick = function(e){
+        let isDraw = false
+        canvas.style.cursor = 'crosshair'
+        canvas.onclick = function(e){
+            if(isDraw===false){
+                ctx.moveTo(e.clientX -canvas.getBoundingClientRect().left,e.clientY - canvas.getBoundingClientRect().top)
+                isDraw = true
+            }else {
+                ctx.lineTo(e.clientX -canvas.getBoundingClientRect().left,e.clientY - canvas.getBoundingClientRect().top)
+            }
+            ctx.stroke()
+        }
+    }
+    end.onclick = function(){
+        canvas.onclick = null
+        ctx.clearRect(0,0,10000,10000)
+    }
+
+
+</script>
+</html>

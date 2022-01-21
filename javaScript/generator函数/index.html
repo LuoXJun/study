@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>generator函数</title>
+</head>
+<body>
+    
+</body>
+
+
+<script>
+    
+    {
+        // 调用该类函数时不直接输出结果而是返回一个'generator object'对象管理流程
+        function* generator(){
+
+            yield 1
+            yield 2
+            yield 3
+            return 'theEnd'
+
+        }
+        let object = generator()
+
+        // 该类函数是可迭代的,同时只会返回yield的返回值
+        for( const ele of object){
+
+            console.log(ele)
+
+        }
+
+        // 每次调用next(只会返回一个值和当前函数值是否全部打印，按顺序往下，这也是为什么先迭代再打印时value为undefined)
+        let one = object.next()
+        console.log(one)
+
+        let two = object.next()
+        console.log(two)
+
+        let three = object.next()
+        console.log(three)
+
+        let four = object.next()
+        console.log(four)
+
+        
+
+    }
+
+    // 嵌套使用
+    {
+        function* generateSequence(start, end) {
+
+            for (let i = start; i <= end; i++) yield i;
+
+        }
+            
+        function* generatePasswordCodes() {
+
+            // 0..9
+            yield* generateSequence(48, 57);
+            
+            // A..Z
+            yield* generateSequence(65, 90);
+            
+            // a..z
+            yield* generateSequence(97, 122);
+
+        }
+
+        let str = '';
+
+        for(let code of generatePasswordCodes()) {
+
+            str += String.fromCharCode(code);
+
+        }
+
+        console.log(str)
+    }
+
+    // 调用时next时可传入参数，同时将yield的返回值变为参数
+    {
+        function* generator(){
+
+            let result = yield '2 + 2 = ？'
+            console.log(result)
+
+            let result1 = yield '3 + 3 = ？'
+            console.log(result1)
+
+        }
+
+        let object = generator()
+
+        // 自定义接下来的返回值
+        object.next()
+        object.next(4)
+        object.next(6)
+    }
+
+
+</script>
+
+</html>
